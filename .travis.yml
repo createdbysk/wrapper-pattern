@@ -1,1 +1,2 @@
 script: make ci
+language: python
