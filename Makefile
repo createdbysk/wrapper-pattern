@@ -7,9 +7,6 @@ build:
 test:
 	docker run --rm satvidh/wrapper-pattern
 
-publish:
-	echo "publish"
-
-ci: clean build test publish
+ci: clean build test
 
 .PHONY: test
