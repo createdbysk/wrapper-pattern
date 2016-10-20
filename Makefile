@@ -1,16 +1,12 @@
-test:
-	echo "No tests to run. So Sad :-("
-
 clean:
-	echo "clean"
+	-docker rmi satvidh/wrapper-pattern
 
 build:
-	echo "build"
+	docker build -t satvidh/wrapper-pattern package
 
-publish:
-	echo "publish"
+test:
+	docker run --rm satvidh/wrapper-pattern
 
-ci: clean test build publish
+ci: clean build test
 
 .PHONY: test
-	

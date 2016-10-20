@@ -1,1 +1,6 @@
+language: bash
+
+services:
+    - docker
+
 script: make ci
