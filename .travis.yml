@@ -1,2 +1,6 @@
-script: make ci
 language: python
+
+services:
+    - docker
+
+script: make ci

@@ -5,7 +5,7 @@ clean:
 	echo "clean"
 
 build:
-	echo "build"
+	docker build -t satvidh/wrapper-pattern .
 
 publish:
 	echo "publish"
@@ -13,4 +13,3 @@ publish:
 ci: clean test build publish
 
 .PHONY: test
-	
