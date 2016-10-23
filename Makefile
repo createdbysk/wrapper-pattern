@@ -1,12 +1,15 @@
 clean:
-	-docker rmi satvidh/wrapper-pattern
+	-./clean.sh
 
 build:
-	docker build -t satvidh/wrapper-pattern package
+	./build.sh
 
 test:
-	docker run --rm satvidh/wrapper-pattern
+	./test.sh
 
-ci: clean build test
+publish:
+	./publish.sh
+
+ci: clean build test publish
 
 .PHONY: test
