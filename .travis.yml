@@ -4,11 +4,3 @@ services:
     - docker
 
 script: make ci
-
-after_success:
-    docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
-    if [ "$TRAVIS_BRANCH" == "master" ]; then
-        docker push satvidh/wrapper-pattern:latest
-    else
-        docker push satvidh/wrapper-pattern:$TRAVIS_BRANCH
-    endif
