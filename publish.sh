@@ -27,7 +27,7 @@ TEMP_RESULT=$(mktemp)
 
 STATUS=$(curl -w "%{http_code}" -o ${TEMP_RESULT} -H "Authorization: token ${GITHUB_TOKEN}" \
         -X POST -d @${RELEASE_PROPERTIES_FILE} \
-        https://api.github.com/repos/satvidh/${NAME}/releases)
+        https://api.github.com/repos/satvidh/${ARTIFACT}/releases)
 
 RESULT=$?
 if [ ${RESULT} -ne 0 ]; then
@@ -37,7 +37,7 @@ fi
 
 if [ ${STATUS} -eq 201 ]; then
     ID=$(cat ${TEMP_RESULT} | jq -r '.id')
-    UPLOAD_URL=https://uploads.github.com/repos/satvidh/${NAME}/releases/${ID}/assets
+    UPLOAD_URL=https://uploads.github.com/repos/satvidh/${ARCTIFACT}/releases/${ID}/assets
     curl -H "Authorization: token ${GITHUB_TOKEN}" \
         -H "Content-Type:application/x-gtar" \
         -X POST -d @${BUILD_DIR}/${ARCHIVE} \

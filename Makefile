@@ -32,7 +32,14 @@ build:
 		./build.sh
 
 test:
-	./test.sh
+	ARTIFACT=$(ARTIFACT) \
+	ARCHIVE=$(ARCHIVE) \
+	VERSION=$(VERSION) \
+	BUILD_DIR=$(BUILD_DIR) \
+	REQUIREMENTS_DIR=$(REQUIREMENTS_DIR) \
+	BUILD_NUMBER=$(BUILD_NUMBER) \
+	BRANCH=$(BRANCH) \
+		./test.sh
 
 publish:
 	ARTIFACT=$(ARTIFACT) \
