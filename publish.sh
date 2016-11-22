@@ -16,7 +16,7 @@ cat > ${RELEASE_PROPERTIES_FILE} <<EOF
 {
     "tag_name": "${VERSION}",
     "target_commitish": "${BRANCH}",
-    "name": "${NAME}",
+    "name": "${VERSION}",
     "body": "${DESCRIPTION}",
     "draft": ${IS_DRAFT},
     "prerelease": ${IS_PRERELEASE}
@@ -36,8 +36,9 @@ if [ ${RESULT} -ne 0 ]; then
 fi
 
 if [ ${STATUS} -eq 201 ]; then
+    cat ${TEMP_RESULT}
     ID=$(cat ${TEMP_RESULT} | jq -r '.id')
-    UPLOAD_URL=https://uploads.github.com/repos/satvidh/${ARCTIFACT}/releases/${ID}/assets
+    UPLOAD_URL=https://uploads.github.com/repos/satvidh/${ARTIFACT}/releases/${ID}/assets
     curl -H "Authorization: token ${GITHUB_TOKEN}" \
         -H "Content-Type:application/x-gtar" \
         -X POST -d @${BUILD_DIR}/${ARCHIVE} \
